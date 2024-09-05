@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block title %}{{blog.title}} - BrainBunny{% endblock title %}
+
+{% block content %}
+
+<h1 class="display-4 text-center my-5">{{blog.title|title}}</h1>
+
+<main>
+    <div class="container col-md-8 col-sm-12">
+        <div class="d-flex justify-content-between">
+            <div>
+                <sub>Author</sub><br>
+                <a href="{% url 'profile' blog.author.username %}">@{{blog.author.username}}</a>
+            </div>
+            <div>
+                <sub>Published</sub><br>
+                <span>{{blog.created_at|timesince}} ago</span>
+            </div>
+            <div>
+                <sub>Updated</sub><br>
+                <span>{{blog.updated_at|timesince}} ago</span>
+            </div>
+        </div>
+        <article class="blog-post">
+            {{blog.content|safe}}
+        </article>
+    </div>
+</main>
+
+{% endblock content %}
